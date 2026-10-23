@@ -1,0 +1,13 @@
+allowBuilds:
+  electron-winstaller: true
+
+onlyBuiltDependencies:
+  - better-sqlite3
+  - electron
+  - electron-winstaller
+  - esbuild
+  - '@tailwindcss/oxide'
+
+# zustand 5.0.16 发布不足 24 小时，pnpm 的最短发布龄策略会拦下它
+minimumReleaseAgeExclude:
+  - zustand@5.0.16

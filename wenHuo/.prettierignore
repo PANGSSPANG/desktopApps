@@ -1,0 +1,13 @@
+# 文档由 spec 工具管理，不参与代码格式化
+*.md
+docs/
+
+# 构建产物与依赖
+out/
+release/
+node_modules/
+coverage/
+
+# 锁文件
+package-lock.json
+pnpm-lock.yaml

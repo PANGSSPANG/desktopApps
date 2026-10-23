@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #f6f1e7;
+  --color-paper-deep: #ece3d3;
+  --color-ink: #2a2520;
+  --color-ink-soft: #6d6357;
+  --color-accent: #9a5b32;
+  --color-line: #ddd2bd;
+  --font-serif: 'Source Han Serif SC', 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*
+ * 原生滚动条在 Windows 上被"拖到一半中断"（鼠标移出窗口、松开在容器外）时，
+ * Chromium 会残留拖拽状态，之后所有点击都不再落到输入框上，必须重启应用。
+ * 这是 Chromium/Electron 的已知问题（KDE #495846、VS Code/Discord 同类反馈），
+ * 应用层无法可靠清理，所以直接去掉原生滚动条，保留滚轮、触控板与键盘滚动。
+ */
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+}
+
+/* 正文版心：中文首行缩进、行高与衬线字体统一在这里控制 */
+.wh-prose {
+  min-height: 60vh;
+  outline: none;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.95;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+}
+
+.wh-prose p {
+  margin: 0 0 0.6em;
+  text-indent: 2em;
+}
+
+.wh-prose h1,
+.wh-prose h2,
+.wh-prose h3 {
+  margin: 1.4em 0 0.6em;
+  font-weight: 600;
+  text-indent: 0;
+}
+
+.wh-prose blockquote {
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid var(--color-line);
+  color: var(--color-ink-soft);
+}
+
+.wh-prose blockquote p {
+  text-indent: 0;
+}
+
+.wh-prose hr {
+  margin: 2em 0;
+  border: none;
+  border-top: 1px solid var(--color-line);
+}
+
+.wh-prose strong {
+  font-weight: 650;
+}
+
+.ProseMirror:focus,
+.ProseMirror:focus-visible {
+  outline: none;
+}
+
+/* 查找命中：所有匹配浅色，当前一处加深 */
+.wh-find-match {
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  border-radius: 2px;
+}
+
+.wh-find-active {
+  background: color-mix(in srgb, var(--color-accent) 42%, transparent);
+  border-radius: 2px;
+}

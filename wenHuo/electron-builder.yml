@@ -1,0 +1,36 @@
+appId: com.wenhuo.app
+productName: 文火
+copyright: Copyright © 2026 Wenhuo
+
+directories:
+  output: release
+  buildResources: build
+
+asar: true
+asarUnpack:
+  - '**/node_modules/better-sqlite3/**'
+# better-sqlite3 13 使用 N-API 预编译产物，与 Electron 共用同一份二进制，无需重编
+npmRebuild: false
+files:
+  - out/**/*
+  - package.json
+
+# 双击无反应时的兼容启动器（受限环境里需要 --no-sandbox）
+extraFiles:
+  - from: build/launcher/start-wenhuo-no-sandbox.cmd
+    to: start-wenhuo-no-sandbox.cmd
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  artifactName: wenhuo-${version}-${arch}.${ext}
+  # 可执行文件名保持 ASCII：中文 exe 名会让 rcedit/signtool 在打包阶段失败
+  executableName: wenhuo
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  deleteAppDataOnUninstall: false

@@ -1,0 +1,12 @@
+node_modules/
+out/
+release/
+dist/
+coverage/
+test-results/
+playwright-report/
+.e2e-tmp/
+*.log
+*.tsbuildinfo
+.DS_Store
+Thumbs.db

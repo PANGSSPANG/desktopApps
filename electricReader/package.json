@@ -1,0 +1,50 @@
+{
+  "name": "electric-reader",
+  "version": "1.1.0",
+  "private": true,
+  "description": "electricReader — 本地优先的桌面 EPUB / TXT 阅读器",
+  "author": "electricReader",
+  "license": "MIT",
+  "main": "./out/main/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "pnpm run build && playwright test",
+    "dist:win": "pnpm run build && electron-builder --win",
+    "dist:dir": "pnpm run build && electron-builder --dir"
+  },
+  "dependencies": {
+    "epubjs": "0.3.93",
+    "fast-xml-parser": "5.11.2",
+    "fflate": "0.8.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router-dom": "7.18.4",
+    "zustand": "5.0.15"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "^24.10.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "electron": "43.3.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "6.0.0",
+    "prettier": "^3.9.10",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3",
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  }
+}
