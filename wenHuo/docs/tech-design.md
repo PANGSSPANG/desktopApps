@@ -41,7 +41,7 @@ based-on-date: 2026-10-23
 - `webPreferences`: `contextIsolation: true`、`sandbox: true`、`nodeIntegration: false`、`webSecurity: true`、`preload` 显式指定。
 - 渲染层 HTML 设 CSP：`default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'`，禁 `eval`。
 - `will-navigate` 与 `setWindowOpenHandler` 一律拒绝，外部链接经 `shell.openExternal` 二次确认。
-- IPC 只接受注册表中的通道名，入参用 zod 校验；路径类参数必须经 `resolveInside(base, p)` 校验，禁止越出用户数据目录。
+- IPC 只接受注册表中的通道名，入参在 handler 内用 `asRecord` / `asString` 等逐字段校验；路径由 `createAppPaths()` 推导，不接受渲染层传入的绝对路径。
 
 ---
 
@@ -561,7 +561,7 @@ nsis:
 | F-09 导入导出 | 拆章纯函数 + Exporter 接口 + EPUB 打包 | `modules/import`、`modules/export` | W1（TXT）/ W3（MD/EPUB/导入） |
 | F-10 备份 | `VACUUM INTO` + zip + 恢复前备份 | `modules/backup` | W3 |
 | S1 日更 | 上次项目/章节恢复、顶栏状态、今日字数 | `app:bootstrap`、`modules/stats` | W1–W2 |
-| S2 回退 | `snapshot:restore` + `pre_restore` | `modules/snapshot` | W2 |
+| S2 回退 | `snapshot:restore` 覆盖式恢复 + 确认提示 | `modules/snapshot` | W2 |
 | S3 查设定 | `search:query` 分组 + `world:backlinks` | `modules/search`、`modules/world` | W2–W3 |
 | S4 旧稿迁移 | `import:preview` → `import:commit` | `modules/import` | W3 |
 | S5 崩溃恢复 | 启动扫描 + 恢复候选 UI | `services/crash-recovery` | W2 |

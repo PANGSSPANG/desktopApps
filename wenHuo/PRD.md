@@ -442,7 +442,7 @@ updated: 2026-10-23
 
 质量现状：
 
-- 单元 / 集成：`pnpm test`（178 条，Vitest + 真实临时 SQLite）。
+- 单元 / 集成：`pnpm test`（31 文件 / 194 条，Vitest + 真实临时 SQLite）。
 - 端到端：`pnpm test:e2e`（10 条，Playwright 驱动真实 Electron，串行）。
 - 类型与规范：`pnpm typecheck`、`pnpm lint` 全绿。
 - 打包：`pnpm dist:win:zip` 可产出便携包；NSIS 安装包因受限环境的静默安装器执行限制尚未验证（见 `docs/troubleshooting-launch.md`）。
